@@ -9,12 +9,15 @@ Created on Tue Nov  6 16:16:51 2018
 
 Python OpenCV script to save SERDP camera images
 """
-import numpy as np
 import cv2 as cv
+import glob
 
+videofile = glob.glob('videoIn.*')
+if len(videofile) == 0:
+    raise LookupError("No videoIn file exists")
 
 #Load camera calibration video
-cap = cv.VideoCapture('haptic1-20181107-130300.mp4') #calibration video file
+cap = cv.VideoCapture(videofile[0]) #calibration video file
 im = 0 #Tracker to count image frames
 while(True):
     #Read the frame and display
